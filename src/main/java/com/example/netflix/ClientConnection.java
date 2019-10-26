@@ -15,7 +15,7 @@ public class ClientConnection implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        feignRestClient.findAll();
+//        feignRestClient.findAll();
 
 //        Student student =new Student((long)95885,"Ruth");
 //        feignRestClient.createStudent(student);

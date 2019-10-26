@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(name="netflix-client", url="http://localhost", configuration = FeignConfig.class)
 public interface FeignRestClient {
 
-    @RequestMapping(method = RequestMethod.GET, value = "users")
-    Users findAll();
+//    @RequestMapping(method = RequestMethod.GET, value = "users")
+//    Users findAll();
 
 //    @RequestMapping(method= RequestMethod.POST, value="students")
 //    Student createStudent(@RequestBody Student student);
