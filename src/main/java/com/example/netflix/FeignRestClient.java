@@ -1,41 +1,49 @@
 package com.example.netflix;
 
 import com.example.netflix.config.FeignConfig;
+import com.example.netflix.models.Categories;
+import com.example.netflix.models.MovieDto;
+import com.example.netflix.models.Movies;
 import com.example.netflix.models.Users;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name="netflix-client", url="http://localhost", configuration = FeignConfig.class)
+import java.util.List;
+import java.util.Map;
+
+@FeignClient(name="netflix-client", url="http://10.51.28.183:8088/api/v1/", configuration = FeignConfig.class)
 public interface FeignRestClient {
 
-//    @RequestMapping(method = RequestMethod.GET, value = "users")
-//    Users findAll();
+    @RequestMapping(method = RequestMethod.GET, value = "users")
+    List<Users> findAllUsers();
 
-//    @RequestMapping(method= RequestMethod.POST, value="students")
-//    Student createStudent(@RequestBody Student student);
-//
-//    @RequestMapping(method = RequestMethod.POST, value = "matches")
-//    String getMatch(@RequestParam("studentId") Long studentId, @RequestParam(name = "gender") String gender);
-//
-//    @RequestMapping(method = RequestMethod.PATCH, value = "matches")
-//    Reject rejectMatch(@PathVariable("blindDateId") Long id, @RequestBody String reject);
+    @RequestMapping(method = RequestMethod.POST, value = "users")
+    Users createUser(@RequestBody Users users);
 
-//    @RequestMapping(method = RequestMethod.POST, value="matches")
-//    Match getMatch(@RequestBody Match match);
+    @RequestMapping(method = RequestMethod.DELETE, value = "users/delete/{id}")
+    String deleteUser(@PathVariable Long id, @RequestParam Long userId);
 
-//    @RequestMapping(method = RequestMethod.GET, value = "students")
-//    Student getById(@RequestParam(name = "studentNumber") String studentNumber);
+    @RequestMapping(method = RequestMethod.GET, value = "categories")
+    List<Categories> findAllCategories();
 
-//    @RequestMapping(method = RequestMethod.GET, value = "lecturers")
-//    List<Lecturer> getAllLecturers();
+    @RequestMapping(method = RequestMethod.POST, value = "categories")
+    Categories createCategories(@RequestBody Categories categories);
 
-//    @RequestMapping(method = RequestMethod.POST, value="appointments")
-//    Appointments createAppointment(@RequestBody Appointments appointments);
+    @RequestMapping(method = RequestMethod.GET, value = "categories/{id}")
+    Categories findCategoryById(@PathVariable String id);
 
-//    @RequestMapping(method=RequestMethod.PATCH, value="appointments/{id}")
-//    Appointments confirmAppointment(@RequestParam("studentId") Long studentId, @PathVariable(name = "id") Long appointmentId);
+    @RequestMapping(method = RequestMethod.GET, value = "movies")
+    List<Movies> findAllMovies();
 
+    @RequestMapping(method = RequestMethod.GET, value = "movies/{categoryId}")
+    List<Movies> findByCategoryAndType(@PathVariable String categoryId, @RequestParam String type);
 
+    @RequestMapping(method = RequestMethod.POST, value = "movies/{user}")
+    Categories createMovies(@PathVariable long user, @RequestBody Movies movies);
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "movies/delete/{id}")
+    public String deleteMovie(@PathVariable Long id, @RequestParam Long userId);
+
+    @RequestMapping(method = RequestMethod.PUT, value = "movies/update/{id}")
+    public Movies updateMovie(@PathVariable Long id, @RequestParam Long userId, @RequestBody Movies movies);
 }

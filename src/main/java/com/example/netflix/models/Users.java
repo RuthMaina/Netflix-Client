@@ -14,4 +14,11 @@ public class Users {
     private String name;
     private String email;
     private boolean admin;
+
+
+    public Users(String name, String email, boolean admin) {
+        this.name = name;
+        this.email = email;
+        this.admin = admin;
+    }
 }

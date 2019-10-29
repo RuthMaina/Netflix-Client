@@ -8,8 +8,20 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class Categories {
     private String id;
     private String category;
+
+    public Categories(String category) {
+        this.category = category;
+    }
+
+    public Categories(String id, String category) {
+        this.id = id;
+        this.category = category;
+    }
+
+    public Categories() {
+    }
 }

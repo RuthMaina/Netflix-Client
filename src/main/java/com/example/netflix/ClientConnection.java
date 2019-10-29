@@ -1,8 +1,17 @@
 package com.example.netflix;
 
+import com.example.netflix.models.Categories;
+import com.example.netflix.models.MovieDto;
+import com.example.netflix.models.Movies;
 import com.example.netflix.models.Users;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 @Component
 public class ClientConnection implements CommandLineRunner {
@@ -14,35 +23,50 @@ public class ClientConnection implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
-//        feignRestClient.findAll();
+    public void run(String... args) {
+        try {
+//            feignRestClient.findAllUsers();
 
-//        Student student =new Student((long)95885,"Ruth");
-//        feignRestClient.createStudent(student);
-//        // id is 33
-//
-//        feignRestClient.getMatch((long)33, "MALE");
-//        //id is 21
-//
-//        Reject reject =new Reject((long)33, "Not my type");
-//        feignRestClient.createStudent(student);
-//        feignRestClient.rejectMatch((long)33, "Not my type");
-//        Match match = new Match("MALE", (long)33);
-//        feignRestClient.getMatch(match);
+//            Users users = new Users("User", "user@gmail.com", false);
+//            feignRestClient.createUser(users);
 
-//        Student student = feignRestClient.createStudent(new Student("95885", "Ruth"));
-////        System.out.println("Student added: "+ student);
-//
-//        Student getStudent = feignRestClient.getById(student.getStudentNumber());
-////        System.out.println("Me:" + getStudent);
-//
-//        List<Lecturer> allLecturers = feignRestClient.getAllLecturers();
-////        System.out.println("All Lecturers:" +allLecturers);
-//
-//        Appointments appointment = feignRestClient.createAppointment(new Appointments(student.getid(), (long)2));
-////        System.out.println("Appointment added: "+ appointment);
-//
-//        Appointments confirmAppointment = feignRestClient.confirmAppointment(student.getid(), appointment.getId());
-////        System.out.println("Appointment confirmed: "+ confirmAppointment);
+//            feignRestClient.deleteUser(15L, 15L);
+
+//            feignRestClient.findAllCategories();
+
+//            Categories categories = new Categories("horror");
+//            feignRestClient.createCategories(categories);
+
+//            feignRestClient.findCategoryById("Comedy");
+
+//            feignRestClient.findAllMovies();
+
+//            feignRestClient.findByCategoryAndType("Comedy","Suggested");
+
+//            List<String> categories = Arrays.asList("si-fi", "Action");
+
+            Categories categories1 = feignRestClient.findCategoryById("adventure");
+            Categories categories2 = feignRestClient.findCategoryById("action");
+            List<Categories> setCategories = new ArrayList<Categories>();
+            setCategories.add(categories1);
+            setCategories.add(categories2);
+            Movies movies = new Movies("iron man", Year.of(2008), setCategories);
+            feignRestClient.createMovies(22L, movies);
+
+//            feignRestClient.deleteMovie(30L, 17L);
+
+//            Categories categories1 = feignRestClient.findCategoryById("adventure");
+//            Categories categories2 = feignRestClient.findCategoryById("action");
+//            Categories categories3 = feignRestClient.findCategoryById("si-fi");
+//            List<Categories> setCategories = new ArrayList<Categories>();
+//            setCategories.add(categories1);
+//            setCategories.add(categories2);
+//            setCategories.add(categories3);
+//            Movies movies = new Movies("source code", Year.of(2012), setCategories);
+//            feignRestClient.updateMovie(32L, 17L, movies);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 }
